@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ShipLogger</string>
+    <string name="button_addShip">Add Ship</string>
+    <string name="hint_shipTitle">Ship Title</string>
+    <string name="hint_shipDescription">Ship Description</string>
+    <string name="menu_addShip">Add</string>
+    <string name="menu_cancelShip">Cancel</string>
+    <string name="enter_ship_title"> Please enter a Ship Title </string>
+    <string name="save_ship"> Save Ship </string>
+    <string name="button_addImage"> Add Image </string>
+</resources>
