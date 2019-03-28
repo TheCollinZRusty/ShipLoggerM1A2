@@ -6,4 +6,5 @@ interface ShipLoggerStore {
     fun findAll(): List<ShipLoggerModel>
     fun create(shiplogger: ShipLoggerModel)
     fun update(shiplogger: ShipLoggerModel)
+    fun delete(shiplogger: ShipLoggerModel)
 }

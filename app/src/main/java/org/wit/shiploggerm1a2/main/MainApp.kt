@@ -3,19 +3,20 @@ package org.wit.shiploggerm1a2.main
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.wit.shiploggerm1a2.ShipLoggerStore
+import org.wit.shiploggerm1a2.models.ShipLoggerJSONStore
 
 import org.wit.shiploggerm1a2.models.ShipLoggerMemStore
 
 class MainApp: Application(), AnkoLogger {
 
     //val placemarks = ArrayList<ShipLoggerModel>()
-    val shiploggers = ShipLoggerMemStore()
+    lateinit var shiploggers: ShipLoggerStore
 
     override fun onCreate() {
         super.onCreate()
-        info("Placemark Started")
-        //placemarks.add(ShipLoggerModel("One", "About one..."))
-        //placemarks.add(ShipLoggerModel("Two", "About two..."))
-        //placemarks.add(ShipLoggerModel("Three", "About three..."))
+//        shiploggers = ShipLoggerJSONStore(applicationContext)
+        shiploggers = ShipLoggerMemStore()
+        info("ShipLogger started")
     }
 }

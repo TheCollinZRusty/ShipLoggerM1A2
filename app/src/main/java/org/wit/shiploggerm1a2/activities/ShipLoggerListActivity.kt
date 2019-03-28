@@ -29,7 +29,7 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ShipLoggerAdapter(app.shiploggers.findAll(), this)
-
+        loadShips()
 
         //enable action bar and set title
         toolbarMain.title = title
@@ -54,7 +54,17 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         //recyclerView is a widget in activity_placemark_list.xml
         recyclerView.adapter?.notifyDataSetChanged()
+        loadShips()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun loadShips() {
+        showShips(app.shiploggers.findAll())
+    }
+
+    fun showShips (shiploggers: List<ShipLoggerModel>) {
+        recyclerView.adapter = ShipLoggerAdapter(shiploggers, this)
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
 }

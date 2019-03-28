@@ -1,7 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.wit.shiploggerm1a2">
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+                  android:required="true" />
+
 
     <application
+
             android:name=".main.MainApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -11,13 +19,33 @@
             android:theme="@style/AppTheme">
         <activity android:name=".activities.ShipLoggerActivity">
         </activity>
+        <activity android:name=".activities.CameraActivity">
+
+        </activity>
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="com.example.android.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_path">
+
+            </meta-data>
+        </provider>
+
         <activity android:name=".activities.ShipLoggerListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

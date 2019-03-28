@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_shiplogger.view.*
 import org.wit.shiploggerm1a2.R
+import org.wit.shiploggerm1a2.helpers.readImageFromPath
 import org.wit.shiploggerm1a2.models.ShipLoggerModel
 
 
@@ -17,7 +18,7 @@ class ShipLoggerAdapter constructor(private var shiploggers: List<ShipLoggerMode
                                    private val listener: ShipLoggerListener) : RecyclerView.Adapter<ShipLoggerAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_shiplogger, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_shiplogger, parent, false))
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -32,6 +33,7 @@ class ShipLoggerAdapter constructor(private var shiploggers: List<ShipLoggerMode
         fun bind(shiplogger: ShipLoggerModel,  listener : ShipLoggerListener) {
             itemView.shipTitleList.text= shiplogger.title
             itemView.shipDescriptionList.text = shiplogger.description
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, shiplogger.image))
             itemView.setOnClickListener { listener.onShipLoggerClick(shiplogger) }
         }
     }

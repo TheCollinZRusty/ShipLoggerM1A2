@@ -29,6 +29,7 @@ class ShipLoggerMemStore : ShipLoggerStore, AnkoLogger {
         if (foundShiplogger != null) {
             foundShiplogger.title = shiplogger.title
             foundShiplogger.description = shiplogger.description
+            foundShiplogger.image = shiplogger.image
             logAll()
         }
     }
@@ -36,4 +37,8 @@ class ShipLoggerMemStore : ShipLoggerStore, AnkoLogger {
     fun logAll() {
         shiploggers.forEach { info("${it}") }
     }
+    override fun delete(shiplogger: ShipLoggerModel) {
+        shiploggers.remove(shiplogger)
+    }
+
 }
