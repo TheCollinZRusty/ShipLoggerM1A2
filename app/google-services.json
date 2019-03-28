@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "175329338725",
+    "firebase_url": "https://shiploggerm1a2.firebaseio.com",
+    "project_id": "shiploggerm1a2",
+    "storage_bucket": "shiploggerm1a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175329338725:android:fce3ec7f50823e13",
+        "android_client_info": {
+          "package_name": "org.wit.shiploggerm1a2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175329338725-6b099p0nhssdhdmsa93vqqoedqtims79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.shiploggerm1a2",
+            "certificate_hash": "f266c7cf1f1e71abbfbed00a2ef4e2a050487bbd"
+          }
+        },
+        {
+          "client_id": "175329338725-5avk8c13attebusut7t271br5ciqm4ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCPpDkUvIGuMmdHrvj_gq60gkknpK3Ziw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175329338725-5avk8c13attebusut7t271br5ciqm4ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
