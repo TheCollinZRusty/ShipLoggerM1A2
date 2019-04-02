@@ -32,10 +32,14 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
     val IMAGE_REQUEST = 1
     val REQUEST_IMAGE_CAPTURE = 1
 
+    var listships: MutableList<String> = ArrayList()
+    var shipList: MutableList<String> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shiplogger)
+
         app = application as MainApp
         edit = true
 
@@ -51,6 +55,10 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
                 edit = true
             }
         }
+
+
+
+
 
 
 
@@ -85,18 +93,19 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_shiplogger, menu)
         if (edit && menu != null) menu.getItem(0).setVisible(true)
 
         val searchItem = menu?.findItem(R.id.menu_search)
-        if(searchItem != null) {
+        if (searchItem != null) {
             val searchView = searchItem.actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
-                   return true
+                    return true
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
@@ -106,8 +115,6 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
                 }
 
             })
-
-
 
 
         }
@@ -145,15 +152,15 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
 
 
     }
-
-    private fun TakePicture() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
-    }
 }
+//    private fun TakePicture() {
+//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+//            takePictureIntent.resolveActivity(packageManager)?.also {
+//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+//            }
+//        }
+//    }
+//}
 
 
 

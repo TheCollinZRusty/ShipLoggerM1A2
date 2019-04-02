@@ -88,9 +88,7 @@ class CameraActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
-            //To get the File for further usage
             val auxFile = File(mCurrentPhotoPath)
-
 
             var bitmap: Bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath)
             imageView.setImageBitmap(bitmap)
@@ -110,7 +108,6 @@ class CameraActivity : AppCompatActivity() {
 
     @Throws(IOException::class)
     private fun createFile(): File {
-        // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
@@ -118,7 +115,6 @@ class CameraActivity : AppCompatActivity() {
             ".jpg", /* suffix */
             storageDir /* directory */
         ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
             mCurrentPhotoPath = absolutePath
         }
     }

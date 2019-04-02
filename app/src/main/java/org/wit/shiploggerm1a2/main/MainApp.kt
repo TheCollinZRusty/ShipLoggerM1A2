@@ -15,8 +15,8 @@ class MainApp: Application(), AnkoLogger {
 
     override fun onCreate() {
         super.onCreate()
-//        shiploggers = ShipLoggerJSONStore(applicationContext)
-        shiploggers = ShipLoggerMemStore()
+        shiploggers = ShipLoggerJSONStore(applicationContext)
+//        shiploggers = ShipLoggerMemStore()
         info("ShipLogger started")
     }
 }

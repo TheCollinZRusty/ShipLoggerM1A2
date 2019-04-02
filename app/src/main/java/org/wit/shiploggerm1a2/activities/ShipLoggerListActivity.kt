@@ -3,6 +3,7 @@ package org.wit.shiploggerm1a2.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import kotlinx.android.synthetic.main.activity_shiplogger_list.*
@@ -44,6 +45,9 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_add -> startActivityForResult<ShipLoggerActivity>(0)
+        }
+        when (item?.itemId) {
+            R.id.menu_camera -> startActivityForResult<CameraActivity>(0)
         }
         return super.onOptionsItemSelected(item)
     }
