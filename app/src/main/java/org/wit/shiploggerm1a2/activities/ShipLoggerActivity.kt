@@ -1,22 +1,21 @@
 package org.wit.shiploggerm1a2.activities
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
-import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_shiplogger.*
-import kotlinx.android.synthetic.main.activity_shiplogger_list.*
-import kotlinx.android.synthetic.main.card_shiplogger.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import android.support.v7.widget.SearchView
-import org.jetbrains.anko.startActivityForResult
+import android.view.View
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import org.jetbrains.anko.toast
 import org.wit.shiploggerm1a2.R
+import org.wit.shiploggerm1a2.helpers.UsersDBHelper
 import org.wit.shiploggerm1a2.helpers.readImage
 import org.wit.shiploggerm1a2.helpers.readImageFromPath
 import org.wit.shiploggerm1a2.helpers.showImagePicker
@@ -30,16 +29,21 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
     var edit = false
     val IMAGE_REQUEST = 1
-    val REQUEST_IMAGE_CAPTURE = 1
 
-    var listships: MutableList<String> = ArrayList()
-    var shipList: MutableList<String> = ArrayList()
+    lateinit var usersDBHelper : UsersDBHelper
+
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shiplogger)
 
+
+
+        usersDBHelper = UsersDBHelper(this)
         app = application as MainApp
         edit = true
 
@@ -56,14 +60,11 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
             }
         }
 
-
-
-
-
-
-
-
         btnAdd.setOnClickListener() {
+
+
+
+
             shiplogger.title = shipTitle.text.toString()
             shiplogger.description = shipDescription.text.toString()
             if (shiplogger.title.isNotEmpty()) {
@@ -93,9 +94,7 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
 
-
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_shiplogger, menu)
         if (edit && menu != null) menu.getItem(0).setVisible(true)
@@ -110,16 +109,10 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
 
                 override fun onQueryTextChange(p0: String?): Boolean {
 
-
                     return true
                 }
-
             })
-
-
         }
-
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -137,6 +130,11 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
         return super.onOptionsItemSelected(item)
     }
 
+//    private fun writeNewShip(id: String, title: String, description: String?) {
+//        val shipmodel = ShipLoggerModel(title, description)
+//        database.child("Ship").child(id).setValue(shipmodel)
+//    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -145,22 +143,14 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
                     shiplogger.image = data.getData().toString()
                     shipImage.setImageBitmap(readImage(this, resultCode, data))
                     chooseImage.setText(R.string.change_ship_image)
+                   }
                 }
             }
-
         }
-
-
     }
-}
-//    private fun TakePicture() {
-//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-//            takePictureIntent.resolveActivity(packageManager)?.also {
-//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-//            }
-//        }
-//    }
-//}
+
+
+
 
 
 

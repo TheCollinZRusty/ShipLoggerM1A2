@@ -10,31 +10,31 @@ import org.wit.shiploggerm1a2.helpers.readImageFromPath
 import org.wit.shiploggerm1a2.models.ShipLoggerModel
 
 
-interface ShipLoggerListener {
-    fun onShipLoggerClick(shiplogger: ShipLoggerModel)
-}
-
-class ShipLoggerAdapter constructor(private var shiploggers: List<ShipLoggerModel>,
-                                   private val listener: ShipLoggerListener) : RecyclerView.Adapter<ShipLoggerAdapter.MainHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_shiplogger, parent, false))
+    interface ShipLoggerListener {
+        fun onShipLoggerClick(shiplogger: ShipLoggerModel)
     }
 
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val shiplogger = shiploggers[holder.adapterPosition]
-        holder.bind(shiplogger, listener)
-    }
+    class ShipLoggerAdapter constructor(private var shiploggers: List<ShipLoggerModel>,
+                                       private val listener: ShipLoggerListener) : RecyclerView.Adapter<ShipLoggerAdapter.MainHolder>() {
 
-    override fun getItemCount(): Int = shiploggers.size
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
+            return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_shiplogger, parent, false))
+        }
 
-    class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        override fun onBindViewHolder(holder: MainHolder, position: Int) {
+            val shiplogger = shiploggers[holder.adapterPosition]
+            holder.bind(shiplogger, listener)
+        }
 
-        fun bind(shiplogger: ShipLoggerModel,  listener : ShipLoggerListener) {
-            itemView.shipTitleList.text= shiplogger.title
-            itemView.shipDescriptionList.text = shiplogger.description
-            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, shiplogger.image))
-            itemView.setOnClickListener { listener.onShipLoggerClick(shiplogger) }
+        override fun getItemCount(): Int = shiploggers.size
+
+        class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            fun bind(shiplogger: ShipLoggerModel,  listener : ShipLoggerListener) {
+                itemView.shipTitleList.text= shiplogger.title
+                itemView.shipDescriptionList.text = shiplogger.description
+                itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, shiplogger.image))
+                itemView.setOnClickListener { listener.onShipLoggerClick(shiplogger) }
+            }
         }
     }
-}

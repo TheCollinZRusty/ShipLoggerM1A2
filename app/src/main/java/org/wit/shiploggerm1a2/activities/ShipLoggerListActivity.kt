@@ -56,7 +56,6 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         startActivityForResult(intentFor<ShipLoggerActivity>().putExtra("ship_edit", shiplogger), 0)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //recyclerView is a widget in activity_placemark_list.xml
         recyclerView.adapter?.notifyDataSetChanged()
         loadShips()
         super.onActivityResult(requestCode, resultCode, data)

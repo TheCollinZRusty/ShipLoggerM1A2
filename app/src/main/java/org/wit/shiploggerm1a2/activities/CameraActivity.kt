@@ -47,8 +47,6 @@ class CameraActivity : AppCompatActivity() {
 
 
     }
-
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSION_REQUEST_CODE -> {
@@ -69,7 +67,6 @@ class CameraActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun takePicture() {
 
         val intent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -84,7 +81,6 @@ class CameraActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
 
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 
@@ -95,13 +91,11 @@ class CameraActivity : AppCompatActivity() {
 
         }
     }
-
     private fun checkPersmission(): Boolean {
         return (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
             android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
     }
-
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(READ_EXTERNAL_STORAGE, CAMERA), PERMISSION_REQUEST_CODE)
     }
