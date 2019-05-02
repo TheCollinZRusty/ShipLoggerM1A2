@@ -110,3 +110,7 @@ class CameraActivity : AppCompatActivity() {
             }
             }
 
+
+//Referencing
+
+//TODO: Solve issue with not being able to USE createExternalFile

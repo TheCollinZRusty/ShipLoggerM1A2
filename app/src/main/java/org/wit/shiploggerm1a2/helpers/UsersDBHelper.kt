@@ -59,8 +59,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 //
 //        return true
 //    }
-
-    fun readUser(id: Long): ArrayList<ShipLoggerModel> {
+    //
+    fun readShip(id: Long): ArrayList<ShipLoggerModel> {
         val users = ArrayList<ShipLoggerModel>()
         val db = writableDatabase
         var cursor: Cursor? = null
@@ -86,6 +86,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return users
     }
 
+
+    //Reads from the SQL Database
     fun readAllUsers(): ArrayList<ShipLoggerModel> {
         val users = ArrayList<ShipLoggerModel>()
         val db = writableDatabase
@@ -132,3 +134,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 private fun SQLiteDatabase.delete(tablE_NAME: String, selection: Long, selectionArgs: Array<Long>) {
 
 }
+
+
+//Incomplete Unsure of how to add Database functionality to the Functions in ShipLoggerActivity etc.
+
+//TODO: Add the Database functionality to the ShipLoggerActivity
