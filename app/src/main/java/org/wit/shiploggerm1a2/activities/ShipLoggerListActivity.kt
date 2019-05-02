@@ -26,22 +26,23 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         setContentView(R.layout.activity_shiplogger_list)
         app = application as MainApp
 
-        //layout and populate for display
+        //Layout and Adapter
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ShipLoggerAdapter(app.shiploggers.findAll(), this)
         loadShips()
 
-        //enable action bar and set title
+        //Title and Action bar support
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
     }
 
+    //Menu Inflater creates the Options menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
+    //Loads Menu Options
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_add -> startActivityForResult<ShipLoggerActivity>(0)
@@ -51,23 +52,22 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         }
         return super.onOptionsItemSelected(item)
     }
-
+    //Allows Editing of a ship
     override fun onShipLoggerClick(shiplogger: ShipLoggerModel) {
         startActivityForResult(intentFor<ShipLoggerActivity>().putExtra("ship_edit", shiplogger), 0)
     }
+    //Loads ships when Activity starts
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         recyclerView.adapter?.notifyDataSetChanged()
         loadShips()
         super.onActivityResult(requestCode, resultCode, data)
     }
-
     private fun loadShips() {
         showShips(app.shiploggers.findAll())
     }
-
+    //Loads the recyclerview/Displays Ships
     fun showShips (shiploggers: List<ShipLoggerModel>) {
         recyclerView.adapter = ShipLoggerAdapter(shiploggers, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
-
-}
+   }

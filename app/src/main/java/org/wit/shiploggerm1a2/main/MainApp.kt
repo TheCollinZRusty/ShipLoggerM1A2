@@ -10,12 +10,12 @@
     class MainApp: Application(), AnkoLogger {
 
 
+        //Commenting changes from MemStore to JSONStore
         lateinit var shiploggers: ShipLoggerStore
-
         override fun onCreate() {
-            super.onCreate()
-            shiploggers = ShipLoggerJSONStore(applicationContext)
-    //        shiploggers = ShipLoggerMemStore()
-            info("ShipLogger started")
+        super.onCreate()
+        shiploggers = ShipLoggerJSONStore(applicationContext)
+    //  shiploggers = ShipLoggerMemStore()
+        info("ShipLogger started")
         }
-    }
+       }

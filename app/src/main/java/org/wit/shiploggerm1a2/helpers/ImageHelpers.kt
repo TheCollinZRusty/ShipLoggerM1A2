@@ -21,25 +21,29 @@
     fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
         var bitmap: Bitmap? = null
         if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
-            } catch (e: IOException) {
+        try
+        {
+        bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
+        }
+        catch (e: IOException) {
                 e.printStackTrace()
-            }
+        }
         }
         return bitmap
-    }
+        }
     fun readImageFromPath(context: Context, path : String) : Bitmap? {
         var bitmap : Bitmap? = null
         val uri = Uri.parse(path)
         if (uri != null) {
-            try {
-                val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
-                val fileDescriptor = parcelFileDescriptor.getFileDescriptor()
-                bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
-                parcelFileDescriptor.close()
-            } catch (e: Exception) {
-            }
+        try {
+        val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
+        val fileDescriptor = parcelFileDescriptor.getFileDescriptor()
+        bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+        parcelFileDescriptor.close()
         }
+        catch (e: Exception)
+        {
+       }
+      }
         return bitmap
     }
