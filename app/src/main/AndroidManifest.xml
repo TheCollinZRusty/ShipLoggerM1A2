@@ -1,22 +1,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.wit.shiploggerm1a2">
+          xmlns:tools="http://schemas.android.com/tools" package="org.wit.shiploggerm1a2">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
 
 
     <application
 
+
+
             android:name=".main.MainApp"
+            tools:ignore="GoogleAppIndexingWarning"
             android:allowBackup="true"
             android:icon="@mipmap/shortcut_round"
-            android:label=""
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:label="ShipLogger"
+            android:roundIcon="@mipmap/ic_launcher_foreground"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" tools:replace="android:label">
+        <meta-data android:name="OnlineMaps.key" android:value="1y16SuP9cojZqGxGDE6J8kV4ovBHHdqL" />
         <activity android:name=".activities.ShipLoggerActivity">
+        </activity>
+        <activity android:name=".activities.MapActivity">
+
         </activity>
         <activity android:name=".activities.CameraActivity">
 
@@ -25,7 +33,7 @@
                 android:name="android.support.v4.content.FileProvider"
                 android:authorities="com.example.android.fileprovider"
                 android:exported="false"
-                android:grantUriPermissions="true">
+                android:grantUriPermissions="true" tools:replace="android:authorities">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/file_path">
@@ -39,8 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
 
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>

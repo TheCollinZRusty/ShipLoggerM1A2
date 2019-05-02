@@ -22,14 +22,20 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
 
         var shiplogger = ShipLoggerModel()
         lateinit var app: MainApp
-        var edit = false
+        var edit = true
         val IMAGE_REQUEST = 1
         lateinit var usersDBHelper : UsersDBHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_shiplogger)
+
+
+
+
+
 
         usersDBHelper = UsersDBHelper(this)
         app = application as MainApp
@@ -47,10 +53,10 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
             }
            }
         //The Adding Ships Button Behaviour
-        btnAdd.setOnClickListener() {
+            btnAdd.setOnClickListener() {
             shiplogger.title = shipTitle.text.toString()
             shiplogger.description = shipDescription.text.toString()
-            if (shiplogger.title.isNotEmpty()) {
+            if (shiplogger.title.isEmpty()) {
             app.shiploggers.create(shiplogger.copy())
             toast(R.string.enter_ship_title)
             }
@@ -67,25 +73,23 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
             info("add Button Pressed: $shipTitle")
             setResult(AppCompatActivity.RESULT_OK)
             finish()
-        }
+            }
             chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
-        }
+            }
             btnStartAnotherActivity.setOnClickListener {
             val intent = Intent(this, CameraActivity::class.java)
             // start your next activity
             startActivity(intent)
-        }
-
-
+            }
             toolbarAdd.title = title
             setSupportActionBar(toolbarAdd)
-
-        }
+            }
 
     //Inflates the Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_shiplogger, menu)
+        //SearchView
         if (edit && menu != null) menu.getItem(0).setVisible(true)
             val searchItem = menu?.findItem(R.id.menu_search)
             if (searchItem != null) {
@@ -96,12 +100,12 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
             }
             override fun onQueryTextChange(p0: String?): Boolean {
             return true
-             }
             }
-           )
-          }
+            }
+            )
+            }
             return super.onCreateOptionsMenu(menu)
-         }
+            }
 
     //Menu Items for Delete and Cancel
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -126,12 +130,11 @@ class ShipLoggerActivity : AppCompatActivity(), AnkoLogger {
             shiplogger.image = data.getData().toString()
             shipImage.setImageBitmap(readImage(this, resultCode, data))
             chooseImage.setText(R.string.change_ship_image)
-
             }
-           }
-          }
-         }
-        }
+            }
+            }
+            }
+            }
 
 
 

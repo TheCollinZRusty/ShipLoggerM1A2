@@ -13,6 +13,7 @@
     <string name="change_ship_image">Change Ship image</string>
     <string name="menu_takePicture"> Take a picture</string>
     <string name="menu_deleteShip">Delete</string>
+    <string name="menu_map">Go to Map</string>
 
 
 </resources>

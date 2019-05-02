@@ -3,11 +3,11 @@ package org.wit.shiploggerm1a2.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import kotlinx.android.synthetic.main.activity_shiplogger_list.*
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.wit.shiploggerm1a2.R
 import org.wit.shiploggerm1a2.main.MainApp
@@ -50,6 +50,11 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         when (item?.itemId) {
             R.id.menu_camera -> startActivityForResult<CameraActivity>(0)
         }
+        when (item?.itemId) {
+            R.id.menu_map -> startActivity<MapActivity>()
+// startActivityForResult<MapActivity>(0)
+//        }
+        }
         return super.onOptionsItemSelected(item)
     }
     //Allows Editing of a ship
@@ -70,4 +75,4 @@ class ShipLoggerListActivity : AppCompatActivity(), ShipLoggerListener {
         recyclerView.adapter = ShipLoggerAdapter(shiploggers, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
-   }
+    }
